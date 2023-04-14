@@ -10,12 +10,13 @@
             background-color: rgb(251, 163, 1);
         }
         div{
+            border: 1px solid black;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             width: 30%;
             text-align: center;
             padding: 15px;
             margin: auto;
-            margin-top: 200px;
+            margin-top: 100px;
         }
         div button{
             padding: 10px;
@@ -31,9 +32,11 @@
     </style>
 </head>
 <body>
+    <div id="winner" style=" border: none; width: 40%; height: 50px;" ></div>
     <div>
 
-        <h2 id='Date'>Stopwatch</h2>
+        <h2 id='Date'>Stopwatch Game</h2>
+        <p style="font-size: small;"> You have to stop timer at <span style="font-size: 18px;">1:00</span>  , So be quick to Win</p>
         <!-- <h2>Vanilla Javascript Stopwatch</h2> -->
         <p><span id="seconds">00</span> :<span id="tens">00</span></p>
         <button id="button-start">Start</button>
@@ -61,11 +64,18 @@
         // const  Date= new Date();
         // document.getElementById('Date').innerHTML = new Date().toLocaleTimeString();
             // clearInterval(Interval);
-            Interval = setInterval(startTimer ,50);
+            Interval = setInterval(startTimer ,100);
         }
 
         buttonstop.onclick = function(){
             clearInterval(Interval);
+            if(seconds==1 && tens ==00){
+
+                document.getElementById('winner').innerHTML='<h1>you done it !</h1>'
+            }
+            else{
+                alert('try Again');
+            }
         }
 
         buttonreset.onclick = function(){
@@ -74,6 +84,8 @@
             seconds = "00";
             appendTens.innerHTML = tens;
             appendseconds.innerHTML = seconds;
+            document.getElementById('winner').innerHTML='';
+
         }
 
         function startTimer(){
